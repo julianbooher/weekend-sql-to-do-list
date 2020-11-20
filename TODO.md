@@ -6,9 +6,9 @@
     [x] routes - todo router
     [x] server.js
 [] initialize db
-    [] create db 'weekend-to-do-app'
-    [] create table for todos
-    [] id, todo, completed(y/n), time posted automatic? (may want to use later), time completed? (may want to use later), complete by?
+    [x] create db 'weekend-to-do-app'
+    [x] create table for todos
+    [] id, name, todo, completed(y/n), time posted automatic? (may want to use later), time completed? (may want to use later), complete by?
     [] make .sql file in the repository 
 [] Index file
     [] header
