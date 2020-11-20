@@ -9,8 +9,8 @@ app.use( bodyParser.urlencoded({ extended: true }));
 app.use(express.static('server/public'));
 
 // Routes would go here
-let musicRouter = require('./routes/todo_router');
-app.use('/musicLibrary', musicRouter);
+let todos = require('./routes/todo_router');
+app.use('/todos', todos);
 
 
 // Start express

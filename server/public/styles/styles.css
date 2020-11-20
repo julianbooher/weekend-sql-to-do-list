@@ -8,3 +8,8 @@ header{
     padding: 2em;
     margin-bottom: 2em;
 }
+
+table{
+    margin-top: 3em;
+    max-width: 1000px;
+}
