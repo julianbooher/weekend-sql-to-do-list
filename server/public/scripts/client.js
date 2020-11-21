@@ -73,20 +73,29 @@ function getTodos(){
 
 function renderTodos(todos){
     $('#todo-div').empty();
+    $('#completed-div').empty();
     for(let x of todos){
-        let $div = $(`<div class="todo-item" data-id=${x.id}></div>`)
-        $div.append(`<p><b>${x.name}</b></p>`)
-        $div.append(`<p>${x.todo}</p>`)
-        $div.append(`<p>Added: ${x.date_added}</p>`)
         if (x.date_completed){
-            $div.append(`<p>Completed: ${x.date_completed}</p>`)
-            $div.append(`<button class="btn-complete" data-completion="${x.date_completed}">Mark Incomplete</button>`)
+            let $div = $(`<div class="todo-item completed-todo" data-id=${x.id}></div>`);
+            $div.append(`<p class="todo-name"><b>${x.name}</b></p>`);
+            $div.append(`<p>${x.todo}</p>`);
+            $div.append(`<p>Added: ${x.date_added}</p>`);
+            $div.append(`<p>Completed: ${x.date_completed}</p>`);
+            $div.append(`<button class="btn-complete" data-completion="${x.date_completed}">Not Done</button>`);
+            $div.append(`<button class="btn-delete">Delete To-Do</button>`);
+            $('#completed-div').append($div);
+
         } else {
-            $div.append(`<p>Not Completed</p>`)
-            $div.append(`<button data-completion="${x.date_completed}" class="btn-complete">Mark Complete</button>`)
+            let $div = $(`<div class="todo-item" data-id=${x.id}></div>`);
+            $div.append(`<p class="todo-name"><b>${x.name}</b></p>`);
+            $div.append(`<p>${x.todo}</p>`);
+            $div.append(`<p>Added: ${x.date_added}</p>`);
+            $div.append(`<p>Not Completed</p>`);
+            $div.append(`<button data-completion="${x.date_completed}" class="btn-complete">Done!</button>`);
+            $div.append(`<button class="btn-delete">Delete To-Do</button>`);
+            $('#todo-div').append($div);
         }
-        $div.append(`<button class="btn-delete">Delete To-Do</button>`)
-        $('#todo-div').append($div);
+
     }
 
     // $('#todo-table-body').empty();
@@ -125,7 +134,7 @@ function submitTodo(event){
     if (todo.name && todo.todo){
         // Emptying any error fields.
         $('#in-error-message').empty();
-        $('#in-error-message').removeClass()
+        $('#in-error-message').removeClass();
         $.ajax({
             type: 'POST',
             url: '/todos',

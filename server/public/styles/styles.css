@@ -1,10 +1,9 @@
 body{
     background-color: antiquewhite;
 }
-
 header{
     text-align: center;
-    background-color: gray;
+    background-color: rgba(69, 155, 212, 0.856);
     padding: 2em;
     margin-bottom: 2em;
 }
@@ -13,30 +12,20 @@ main{
     width: 100%;
 }
 
-table{
-    margin-top: 1em;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
+/* ----- INPUT FIELDS ----- */
 .input-error{
     border-color: red;
     background-color: rgba(207, 25, 25, 0.329);
 }
-
 #in-error-message{
-    padding: 4px;
-    width: 440px;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
+    padding: 0;
+    max-width: 400px;
+    margin: 0 auto;
     margin-bottom: 1em;
 }
 #in-div{
     text-align: center;
 }
-
 input{
     width: 20em;
 }
@@ -46,14 +35,19 @@ input{
 #in-todo{
     margin-bottom: 4px;
 }
-#table-title{
+
+/* ----- TODO ITEM SECTION ----- */
+.todo-div{
     text-align: center;
+}
+.section-title{
     margin-top: 2em;
 }
 .todo-item{
     height: 250px;
     width: 250px;
-    background-color: rgba(197, 197, 51, 0.705);
+    background-color: rgba(236, 236, 3, 0.705);
+    box-shadow: 5px 10px 18px rgba(189, 189, 24, 0.842);
     margin: 1em;
     display: inline-block;
     text-align: center;
@@ -64,12 +58,12 @@ input{
     bottom: 3%;
 }
 .btn-delete{
-    float: left;
-    left: 2%;
-}
-.btn-complete{
     right: 2%;
 }
-.todo-div{
-    text-align: center;
+.btn-complete{
+    left: 2%;
+}
+.completed-todo{
+    background-color: green;
+    box-shadow: 5px 10px 18px green;
 }
