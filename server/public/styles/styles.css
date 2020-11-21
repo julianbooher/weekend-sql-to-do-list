@@ -12,4 +12,27 @@ header{
 table{
     margin-top: 3em;
     max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input-error{
+    border-color: red;
+    background-color: rgba(207, 25, 25, 0.329);
+}
+
+#in-error-message{
+    margin-top: 1em;
+    padding: 4px;
+    width: 440px;
+    text-align: center;
+    margin: auto;
+    margin-top: 1em;
+}
+#in-div{
+    text-align: center;
+}
+
+input{
+    width: 20em;
 }

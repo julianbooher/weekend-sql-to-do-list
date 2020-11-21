@@ -8,20 +8,20 @@
 [] initialize db
     [x] create db 'weekend-to-do-app'
     [x] create table for todos
-    [] id, name, todo, completed(y/n), time posted automatic? (may want to use later), time completed? (may want to use later), complete by?
+    [x] id, name, todo, completed(y/n), time posted automatic? (may want to use later), time completed? (may want to use later), complete by?
     [] make .sql file in the repository 
 [] Index file
-    [] header
-    [] input fields to enter todo item
+    [x] header
+    [x] input fields to enter todo item
         [] think of other things to put in input fields, urgency w/ corresponding color?
-    [] area to append table
+    [x] area to append table
     [] footer
 
 [] client.js
-    [] function to append the table from the sql DB when page loads
-        [] ajax GET route
-    [] click handler for submit button
-        [] runs ajax post route, adds input to the database
+    [x] function to append the table from the sql DB when page loads
+        [x] ajax GET route
+    [x] click handler for submit button
+        [x] runs ajax post route, adds input to the database
         [] check to ensure inputs are full
     [] click handler for complete button eventually
         [] when clicked, background color of the task will change to indicate completion.

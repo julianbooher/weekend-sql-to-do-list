@@ -19,7 +19,15 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     let newTodo = req.body;
     console.log('Adding newTodo', newTodo);
-    let queryText = `INSERT INTO "todos"`
+    let queryText = `INSERT INTO todos (name, todo, date_added) VALUES ($1, $2, $3)`
+    pool.query(queryText, [newTodo.name, newTodo.todo, newTodo.date_added])
+        .then(result => {
+            res.sendStatus(201);
+        })
+        .catch(error => {
+            console.log('Error adding new todo', error);
+            res.sendStatus(500);
+        });
 })
 // TODO DELETE route
 

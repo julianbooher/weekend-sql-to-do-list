@@ -19,11 +19,14 @@
         <main>
             <h4>Input</h4>
         </main>
-        <form>
-            <input id="#in-name" placeholder="Who's Writing?">
-            <input id="in-todo" placeholder="todo">
-            <button id="btn-submit">Submit To Do</button>
-        </form>
+        <div id="in-div">
+            <form>
+                <input id="in-name" placeholder="Whose To-Do?"><br>
+                <input id="in-todo" placeholder="To-Do"><br>
+                <button id="btn-submit">Submit To Do</button>
+            </form>
+            <p id="in-error-message"></p>
+        </div>
         <table class="table table-striped" id="todo-table">
             <thead>
                 <tr>
