@@ -23,10 +23,10 @@
     [x] click handler for submit button
         [x] runs ajax post route, adds input to the database
         [x] check to ensure inputs are full
-    [] click handler for complete button eventually
+    [x] click handler for complete button eventually
         [] when clicked, background color of the task will change to indicate completion.
-        [] toggles 'complete' column in database will change on click
+        [x] toggles 'complete' column in database will change on click
         [] <td> row class will be based on the y/n data, background color etc.
-    [] click handler for delete button eventually
+    [x] click handler for delete button eventually
 
 [] README
