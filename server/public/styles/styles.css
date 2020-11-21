@@ -36,3 +36,9 @@ table{
 input{
     width: 20em;
 }
+#in-name{
+    margin-bottom: 4px;
+}
+#in-todo{
+    margin-bottom: 4px;
+}

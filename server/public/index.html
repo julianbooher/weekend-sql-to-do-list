@@ -17,31 +17,31 @@
             <h1>To-Do List!</h1>
         </header>
         <main>
-            <h4>Input</h4>
+            <div id="in-div">
+                <h4>Submit a To-Do!</h4>
+                <form>
+                    <input id="in-name" placeholder="Whose To-Do?"><br>
+                    <input id="in-todo" placeholder="To-Do"><br>
+                    <button id="btn-submit">Submit To Do</button>
+                </form>
+                <p id="in-error-message"></p>
+            </div>
+            <table class="table table-striped" id="todo-table">
+                <thead>
+                    <tr>
+                        <th>Whose To-Do?</th>
+                        <th>To-Do</th>
+                        <th>Date Added</th>
+                        <th>Date Completed</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="todo-table-body">
+    
+                </tbody>
+    
+            </table>
         </main>
-        <div id="in-div">
-            <form>
-                <input id="in-name" placeholder="Whose To-Do?"><br>
-                <input id="in-todo" placeholder="To-Do"><br>
-                <button id="btn-submit">Submit To Do</button>
-            </form>
-            <p id="in-error-message"></p>
-        </div>
-        <table class="table table-striped" id="todo-table">
-            <thead>
-                <tr>
-                    <th>Whose To-Do?</th>
-                    <th>To-Do</th>
-                    <th>Date Added</th>
-                    <th>Date Completed</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody id="todo-table-body">
-
-            </tbody>
-
-        </table>
     </body>
 </html>
