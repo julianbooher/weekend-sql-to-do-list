@@ -8,6 +8,10 @@ header{
     padding: 2em;
     margin-bottom: 2em;
 }
+main{
+    text-align: center;
+    width: 100%;
+}
 
 table{
     margin-top: 1em;
@@ -22,12 +26,12 @@ table{
 }
 
 #in-error-message{
-    margin-top: 1em;
     padding: 4px;
     width: 440px;
     text-align: center;
-    margin: auto;
-    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1em;
 }
 #in-div{
     text-align: center;
@@ -45,4 +49,27 @@ input{
 #table-title{
     text-align: center;
     margin-top: 2em;
+}
+.todo-item{
+    height: 250px;
+    width: 250px;
+    background-color: rgba(197, 197, 51, 0.705);
+    margin: 1em;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+}
+.todo-item button{
+    position: absolute;
+    bottom: 3%;
+}
+.btn-delete{
+    float: left;
+    left: 2%;
+}
+.btn-complete{
+    right: 2%;
+}
+.todo-div{
+    text-align: center;
 }

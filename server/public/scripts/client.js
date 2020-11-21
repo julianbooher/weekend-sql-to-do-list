@@ -21,7 +21,7 @@ function onReady(){
 
 function updateTodo(){
     // id of the todo task
-    let id = $(this).closest('tr').data('id');
+    let id = $(this).closest('div').data('id');
     // This is the current completion status, which is stored as data in the button.
     let completion = $(this).data('completion');
     // If it's null, make it today's date to send over to server side, if it has a date, make it null so it will end up as null on server side.
@@ -45,7 +45,7 @@ function updateTodo(){
 }
 
 function deleteTodo(){
-    let id = $(this).closest('tr').data('id');
+    let id = $(this).closest('div').data('id');
     console.log('in deleteTodo, id to delete:', id );
     $.ajax({
         method: 'DELETE',
@@ -72,28 +72,45 @@ function getTodos(){
 }
 
 function renderTodos(todos){
-    $('#todo-table-body').empty();
-    for (let x of todos){
-        let $tr = $(`<tr data-id="${x.id}"></tr>`);
-        $tr.append(`<td>${x.name}</td>`);
-        $tr.append(`<td>${x.todo}</td>`);
-        $tr.append(`<td>${x.date_added}</td>`);
-        if(x.date_completed){
-            $tr.append(`<td>${x.date_completed}</td>`);
-            $tr.append(`<td>
-            <button class="btn-complete" data-completion="${x.date_completed}">
-            Mark Incomplete
-            </button></td>`)
+    $('#todo-div').empty();
+    for(let x of todos){
+        let $div = $(`<div class="todo-item" data-id=${x.id}></div>`)
+        $div.append(`<p><b>${x.name}</b></p>`)
+        $div.append(`<p>${x.todo}</p>`)
+        $div.append(`<p>Added: ${x.date_added}</p>`)
+        if (x.date_completed){
+            $div.append(`<p>Completed: ${x.date_completed}</p>`)
+            $div.append(`<button class="btn-complete" data-completion="${x.date_completed}">Mark Incomplete</button>`)
         } else {
-            $tr.append(`<td>Not completed</td>`);
-            $tr.append(`<td>
-            <button data-completion="${x.date_completed}" class="btn-complete">
-            Mark Complete
-            </button></td>`)
+            $div.append(`<p>Not Completed</p>`)
+            $div.append(`<button data-completion="${x.date_completed}" class="btn-complete">Mark Complete</button>`)
         }
-        $tr.append(`<td><button class="btn-delete">Delete To-Do</button></td>`)
-        $('#todo-table-body').append($tr);
+        $div.append(`<button class="btn-delete">Delete To-Do</button>`)
+        $('#todo-div').append($div);
     }
+
+    // $('#todo-table-body').empty();
+    // for (let x of todos){
+    //     let $tr = $(`<tr data-id="${x.id}"></tr>`);
+    //     $tr.append(`<td>${x.name}</td>`);
+    //     $tr.append(`<td>${x.todo}</td>`);
+    //     $tr.append(`<td>${x.date_added}</td>`);
+    //     if(x.date_completed){
+    //         $tr.append(`<td>${x.date_completed}</td>`);
+    //         $tr.append(`<td>
+    //         <button class="btn-complete" data-completion="${x.date_completed}">
+    //         Mark Incomplete
+    //         </button></td>`)
+    //     } else {
+    //         $tr.append(`<td>Not completed</td>`);
+    //         $tr.append(`<td>
+    //         <button data-completion="${x.date_completed}" class="btn-complete">
+    //         Mark Complete
+    //         </button></td>`)
+    //     }
+    //     $tr.append(`<td><button class="btn-delete">Delete To-Do</button></td>`)
+    //     $('#todo-table-body').append($tr);
+    // }
 }
 
 function submitTodo(event){
