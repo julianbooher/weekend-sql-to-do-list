@@ -30,6 +30,20 @@ router.post('/', (req, res) => {
         });
 })
 // TODO DELETE route
+router.delete('/:id', (req, res) => {
+    let id = req.params.id; // id of the thing to delete
+    console.log('Delete route called with id of', id);
+    let sqlText = `DELETE FROM todos WHERE id=$1`
+    pool.query(sqlText, [id])
+      .then( (result) => {
+        res.sendStatus(200);
+      })
+      .catch( (error) => {
+        console.log ('Error from db:', error);
+        res.sendStatus(500);
+      })
+})
+
 
 // TODO PUT route
 

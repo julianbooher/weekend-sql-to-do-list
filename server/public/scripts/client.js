@@ -15,6 +15,22 @@ function onReady(){
     $('#in-todo').on('keydown', function(){
         $('#in-todo').removeClass('input-error');
     });
+    $('body').on('click', '.btn-delete', deleteTodo);
+}
+
+function deleteTodo(){
+    let id = $(this).closest('tr').data('id');
+    console.log('in deleteTodo, id to delete:', id );
+    $.ajax({
+        method: 'DELETE',
+        url: `/todos/${id}`
+      }).then( function(response) {
+        getTodos();
+        console.log('Succesfully Deleted');
+      }).catch( function(error){
+        console.log('Error', error);
+        alert('Something bad happened. Try again later.');
+      })
 }
 
 function getTodos(){
@@ -32,7 +48,7 @@ function getTodos(){
 function renderTodos(todos){
     $('#todo-table-body').empty();
     for (let x of todos){
-        let $tr = $(`<tr id="${x.id}"></tr>`);
+        let $tr = $(`<tr data-id="${x.id}"></tr>`);
         $tr.append(`<td>${x.name}</td>`);
         $tr.append(`<td>${x.todo}</td>`);
         $tr.append(`<td>${x.date_added}</td>`);
@@ -42,7 +58,7 @@ function renderTodos(todos){
             $tr.append(`<td>Not completed</td>`);
         }
         $tr.append(`<td><button id="btn-complete">Complete To-Do</button></td>`)
-        $tr.append(`<td><form><button id="btn-delete">Delete To-Do</button></form></td>`)
+        $tr.append(`<td><button class="btn-delete">Delete To-Do</button></td>`)
         $('#todo-table-body').append($tr);
     }
 }
