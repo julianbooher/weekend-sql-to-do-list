@@ -4,7 +4,7 @@ const pool = require('../modules/pool');
 
 // TODO GET route
 router.get('/', (req, res) => {
-    let queryText = 'SELECT * FROM todos'
+    let queryText = 'SELECT * FROM todos ORDER BY date_completed DESC, date_added, id;'
     pool.query(queryText).then(result => {
         // sends back results in an object
         res.send(result.rows);
@@ -46,7 +46,26 @@ router.delete('/:id', (req, res) => {
 
 
 // TODO PUT route
+router.put('/:id', (req, res) => {
+    let id = req.params.id // id of the todo to be updated
+    let newCompletion = req.body.completion
+    // If there isn't a newCompletion, we want to make it null so it's null in the SQL table (for other if/else);
+    if(!newCompletion){
+        newCompletion = null;
+    }
+    // Make a SQL query to update the corresponding completion status, either to today's date, or to null.
+    let sqlText = `UPDATE todos SET date_completed=$1 WHERE id=$2;`;
+    pool.query(sqlText, [newCompletion, id])
+    .then( (result) => {
+      res.sendStatus(200);
+    })
+    .catch( (error) => {
+      console.log ('Error from db:', error);
+      res.sendStatus(500);
+    })
+    console.log(`Updating todos ${id} with `, newCompletion);
 
+})
 
 
 module.exports = router;

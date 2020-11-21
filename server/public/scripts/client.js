@@ -16,6 +16,32 @@ function onReady(){
         $('#in-todo').removeClass('input-error');
     });
     $('body').on('click', '.btn-delete', deleteTodo);
+    $('body').on('click', '.btn-complete', updateTodo);
+}
+
+function updateTodo(){
+    // id of the todo task
+    let id = $(this).closest('tr').data('id');
+    // This is the current completion status, which is stored as data in the button.
+    let completion = $(this).data('completion');
+    // If it's null, make it today's date to send over to server side, if it has a date, make it null so it will end up as null on server side.
+    if (!completion){
+        completion = date;
+    } else {
+        completion = null;
+    }
+    console.log('in updateTodo', completion, id);
+    $.ajax({
+        method: 'PUT',
+        url: `/todos/${id}`,
+        data: {completion: completion}
+      }).then( function(response) {
+        getTodos();
+        console.log('Succesfully Changed Read Status');
+      }).catch( function(error){
+        console.log('Error', error);
+        alert('Something bad happened. Try again later.');
+      })
 }
 
 function deleteTodo(){
@@ -54,10 +80,17 @@ function renderTodos(todos){
         $tr.append(`<td>${x.date_added}</td>`);
         if(x.date_completed){
             $tr.append(`<td>${x.date_completed}</td>`);
+            $tr.append(`<td>
+            <button class="btn-complete" data-completion="${x.date_completed}">
+            Mark Incomplete
+            </button></td>`)
         } else {
             $tr.append(`<td>Not completed</td>`);
+            $tr.append(`<td>
+            <button data-completion="${x.date_completed}" class="btn-complete">
+            Mark Complete
+            </button></td>`)
         }
-        $tr.append(`<td><button id="btn-complete">Complete To-Do</button></td>`)
         $tr.append(`<td><button class="btn-delete">Delete To-Do</button></td>`)
         $('#todo-table-body').append($tr);
     }
