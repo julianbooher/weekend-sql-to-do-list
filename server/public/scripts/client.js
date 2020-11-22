@@ -8,17 +8,21 @@ function onReady() {
     console.log(date);
     getTodos();
     $('#btn-submit').on('click', submitTodo);
-    // When these fields is red due to an error, it reverts to normal when the user begins typing.
+    // When one of these fields is red due to an error, it reverts to normal when the user begins typing.
     $('#in-name').on('keydown', function () {
         $('#in-name').removeClass('input-error');
     });
     $('#in-todo').on('keydown', function () {
         $('#in-todo').removeClass('input-error');
     });
+    // Click handler for the delete button.
     $('body').on('click', '.btn-delete', deleteTodo);
+    // Click handler for the completion status button.
     $('body').on('click', '.btn-complete', updateTodo);
-}
+};
 
+
+// This function changes the completion status of a task when the user clicks the button on the task.
 function updateTodo() {
     // id of the todo task
     let id = $(this).closest('div').data('id');
@@ -30,7 +34,7 @@ function updateTodo() {
     } else {
         completion = null;
     }
-    console.log('in updateTodo', completion, id);
+    // Route to change the completion status.
     $.ajax({
         method: 'PUT',
         url: `/todos/${id}`,
@@ -44,7 +48,7 @@ function updateTodo() {
         console.log('Error', error);
         alert('Something bad happened. Try again later.');
     })
-}
+};
 
 function deleteTodo() {
     // Get the id of the task to be deleted, which is stored in it's div.
@@ -100,7 +104,7 @@ function getTodos() {
     }).catch(function (error) {
         console.log('error in GET', error);
     });
-}
+};
 
 function renderTodos(todos) {
     $('#todo-div').empty();
@@ -131,7 +135,7 @@ function renderTodos(todos) {
         }
 
     }
-}
+};
 
 function submitTodo(event) {
     event.preventDefault();
@@ -164,7 +168,7 @@ function submitTodo(event) {
     } else if (!todo.todo) {
         displayError('todo');
     }
-}
+};
 
 // function to display an error message depending on the error
 function displayError(errorName) {
@@ -179,4 +183,4 @@ function displayError(errorName) {
         $('#in-error-message').addClass('alert alert-danger');
         $('#in-error-message').append('Please Enter a To-Do in the submission field.');
     }
-}
+};
