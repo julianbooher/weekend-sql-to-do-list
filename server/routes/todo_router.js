@@ -18,7 +18,6 @@ router.get('/', (req, res) => {
 // TODO POST route
 router.post('/', (req, res) => {
     let newTodo = req.body;
-    console.log('Adding newTodo', newTodo);
     let queryText = `INSERT INTO todos (name, todo, date_added) VALUES ($1, $2, $3)`
     pool.query(queryText, [newTodo.name, newTodo.todo, newTodo.date_added])
         .then(result => {
@@ -32,7 +31,6 @@ router.post('/', (req, res) => {
 // TODO DELETE route
 router.delete('/:id', (req, res) => {
     let id = req.params.id; // id of the thing to delete
-    console.log('Delete route called with id of', id);
     let sqlText = `DELETE FROM todos WHERE id=$1`
     pool.query(sqlText, [id])
       .then( (result) => {

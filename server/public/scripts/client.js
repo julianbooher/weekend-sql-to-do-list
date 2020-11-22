@@ -5,7 +5,6 @@ let date = new Date().toLocaleDateString();
 
 function onReady() {
     console.log('in jQuery');
-    console.log(date);
     getTodos();
     $('#btn-submit').on('click', submitTodo);
     // When one of these fields is red due to an error, it reverts to normal when the user begins typing.
@@ -53,7 +52,6 @@ function updateTodo() {
 function deleteTodo() {
     // Get the id of the task to be deleted, which is stored in it's div.
     let id = $(this).closest('div').data('id');
-    console.log('in deleteTodo, id to delete:', id);
     // example found on https://www.npmjs.com/package/sweetalert2
     Swal.fire({
         title: 'Are you sure?',
@@ -93,32 +91,33 @@ function deleteTodo() {
 
 };
 
-
+// Get route for the todo list.
 function getTodos() {
     $.ajax({
         type: 'GET',
         url: '/todos'
     }).then(function (response) {
-        console.log('in getTodos .then', response);
         renderTodos(response);
     }).catch(function (error) {
         console.log('error in GET', error);
     });
 };
 
+// Render the todos to the DOM after the GET route is finished.
 function renderTodos(todos) {
     $('#todo-div').empty();
     $('#completed-div').empty();
+    // Loop through the results of the get route.
     for (let x of todos) {
         // If it's got a completed date, it's gonna go in the completed section with a green background.
         if (x.date_completed) {
             let $div = $(`<div class="todo-item completed-todo" data-id=${x.id}></div>`);
             $div.append(`<p class="todo-name"><b>${x.name}</b></p>`);
-            $div.append(`<p>${x.todo}</p>`);
+            $div.append(`<p class="todo-task">${x.todo}</p>`);
             $div.append(`<p class="todo-added">Added: ${x.date_added}</p>`);
-            $div.append(`<p>Completed: ${x.date_completed}</p>`);
-            $div.append(`<button class="btn-complete" data-completion="${x.date_completed}">Not Done</button>`);
-            $div.append(`<button class="btn-delete">Delete To-Do</button>`);
+            $div.append(`<p class="todo-completed">Completed: ${x.date_completed}</p>`);
+            $div.append(`<button class="btn-undo-complete btn btn-sm" data-completion="${x.date_completed}">Not Done</button>`);
+            $div.append(`<button class="btn-delete btn btn-danger btn-sm">Delete</button>`);
             $('#completed-div').append($div);
 
         }
@@ -126,20 +125,21 @@ function renderTodos(todos) {
         else {
             let $div = $(`<div class="todo-item" data-id=${x.id}></div>`);
             $div.append(`<p class="todo-name"><b>${x.name}</b></p>`);
-            $div.append(`<p>${x.todo}</p>`);
+            $div.append(`<p class="todo-task">${x.todo}</p>`);
             $div.append(`<p class="todo-added">Added: ${x.date_added}</p>`);
-            $div.append(`<p>Not Completed</p>`);
-            $div.append(`<button data-completion="${x.date_completed}" class="btn-complete">Done!</button>`);
-            $div.append(`<button class="btn-delete">Delete To-Do</button>`);
+            $div.append(`<p class="todo-completed">Not Completed</p>`);
+            $div.append(`<button data-completion="${x.date_completed}" class="btn-complete btn btn-success btn-sm">Done!</button>`);
+            $div.append(`<button class="btn-delete btn btn-danger btn-sm">Delete</button>`);
             $('#todo-div').append($div);
         }
 
     }
 };
 
+// Handles the submission of a new task from the input fields.
 function submitTodo(event) {
     event.preventDefault();
-    console.log('in submitTodo');
+    // Create an object to send through the POST route.
     let todo = {
         name: $('#in-name').val(),
         todo: $('#in-todo').val(),
@@ -147,7 +147,7 @@ function submitTodo(event) {
     }
     // Validate that the inputs are filled out on submission.
     if (todo.name && todo.todo) {
-        // Emptying any error fields.
+        // Emptying any error fields if there is an error.
         $('#in-error-message').empty();
         $('#in-error-message').removeClass();
         $.ajax({
@@ -162,7 +162,7 @@ function submitTodo(event) {
         }).catch(function (error) {
             console.log('error in POST', error);
         })
-        // deciding which error message to display.
+        // Deciding which error message to display.
     } else if (!todo.name) {
         displayError('name');
     } else if (!todo.todo) {
@@ -172,12 +172,15 @@ function submitTodo(event) {
 
 // function to display an error message depending on the error
 function displayError(errorName) {
+    // If the name field is empty in the inputs when the submit button is clicked.
     if (errorName == 'name') {
         $('#in-error-message').empty();
         $('#in-name').addClass('input-error');
         $('#in-error-message').addClass('alert alert-danger');
         $('#in-error-message').append('Please Enter a Name in the submission field.');
-    } else if (errorName == 'todo') {
+    } 
+        // If the todo field is empty in the inputs when the submit button is clicked.
+    else if (errorName == 'todo') {
         $('#in-error-message').empty();
         $('#in-todo').addClass('input-error');
         $('#in-error-message').addClass('alert alert-danger');
