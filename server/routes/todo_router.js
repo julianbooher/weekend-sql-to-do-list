@@ -4,7 +4,7 @@ const pool = require('../modules/pool');
 
 // TODO GET route
 router.get('/', (req, res) => {
-    let queryText = 'SELECT * FROM todos ORDER BY date_completed DESC, date_added, id;'
+    let queryText = 'SELECT * FROM todos ORDER BY date_added DESC, id;'
     pool.query(queryText).then(result => {
         // sends back results in an object
         res.send(result.rows);

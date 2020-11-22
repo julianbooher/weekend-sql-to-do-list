@@ -75,21 +75,24 @@ function renderTodos(todos){
     $('#todo-div').empty();
     $('#completed-div').empty();
     for(let x of todos){
+        // If it's got a completed date, it's gonna go in the completed section with a green background.
         if (x.date_completed){
             let $div = $(`<div class="todo-item completed-todo" data-id=${x.id}></div>`);
             $div.append(`<p class="todo-name"><b>${x.name}</b></p>`);
             $div.append(`<p>${x.todo}</p>`);
-            $div.append(`<p>Added: ${x.date_added}</p>`);
+            $div.append(`<p class="todo-added">Added: ${x.date_added}</p>`);
             $div.append(`<p>Completed: ${x.date_completed}</p>`);
             $div.append(`<button class="btn-complete" data-completion="${x.date_completed}">Not Done</button>`);
             $div.append(`<button class="btn-delete">Delete To-Do</button>`);
             $('#completed-div').append($div);
 
-        } else {
+        } 
+        // If it doesn't have a completed date, it's gonna go in the to-do section with a yellow background.
+        else {
             let $div = $(`<div class="todo-item" data-id=${x.id}></div>`);
             $div.append(`<p class="todo-name"><b>${x.name}</b></p>`);
             $div.append(`<p>${x.todo}</p>`);
-            $div.append(`<p>Added: ${x.date_added}</p>`);
+            $div.append(`<p class="todo-added">Added: ${x.date_added}</p>`);
             $div.append(`<p>Not Completed</p>`);
             $div.append(`<button data-completion="${x.date_completed}" class="btn-complete">Done!</button>`);
             $div.append(`<button class="btn-delete">Delete To-Do</button>`);
@@ -97,29 +100,6 @@ function renderTodos(todos){
         }
 
     }
-
-    // $('#todo-table-body').empty();
-    // for (let x of todos){
-    //     let $tr = $(`<tr data-id="${x.id}"></tr>`);
-    //     $tr.append(`<td>${x.name}</td>`);
-    //     $tr.append(`<td>${x.todo}</td>`);
-    //     $tr.append(`<td>${x.date_added}</td>`);
-    //     if(x.date_completed){
-    //         $tr.append(`<td>${x.date_completed}</td>`);
-    //         $tr.append(`<td>
-    //         <button class="btn-complete" data-completion="${x.date_completed}">
-    //         Mark Incomplete
-    //         </button></td>`)
-    //     } else {
-    //         $tr.append(`<td>Not completed</td>`);
-    //         $tr.append(`<td>
-    //         <button data-completion="${x.date_completed}" class="btn-complete">
-    //         Mark Complete
-    //         </button></td>`)
-    //     }
-    //     $tr.append(`<td><button class="btn-delete">Delete To-Do</button></td>`)
-    //     $('#todo-table-body').append($tr);
-    // }
 }
 
 function submitTodo(event){
