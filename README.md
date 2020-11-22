@@ -1,4 +1,4 @@
-![MIT LICENSE](https://img.shields.io/github/license/julianbooher/weekend-sql-to-do-list.svg?style=flat-square)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![REPO SIZE](https://img.shields.io/github/repo-size/julianbooher/weekend-sql-to-do-list.svg?style=flat-square)
 ![TOP_LANGUAGE](https://img.shields.io/github/languages/top/julianbooher/weekend-sql-to-do-list.svg?style=flat-square)
 ![FORKS](https://img.shields.io/github/forks/julianbooher/weekend-sql-to-do-list.svg?style=social)
