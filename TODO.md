@@ -29,4 +29,4 @@
         [] <td> row class will be based on the y/n data, background color etc.
     [x] click handler for delete button eventually
 
-[] README
+[x] README
