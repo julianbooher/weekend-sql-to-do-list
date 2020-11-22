@@ -125,6 +125,7 @@ function submitTodo(event){
         }).catch(function(error){
             console.log('error in POST', error);
         })
+    // deciding which error message to display.
     } else if (!todo.name) {
         displayError('name');
     } else if (!todo.todo){
