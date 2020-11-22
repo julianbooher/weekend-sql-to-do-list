@@ -13,7 +13,7 @@ Web app that allows the user to add tasks to a to-do list. From there, they can 
 
 ## Screen Shot
 
-![Wireframe](calculator.png)
+![Wireframe](server/public/imgs/to-do-app.png)
 
 ## Installation
 
