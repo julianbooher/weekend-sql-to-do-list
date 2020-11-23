@@ -9,7 +9,7 @@ if (process.env.DATABASE_URL){
     // running remote (heroku).
     config = {
         connectionString: process.env.DATABASE_URL,
-        ssl: { rejectUnauthenticated: false }
+        ssl: { rejectUnauthorized: false }
     }
 
 } else {
