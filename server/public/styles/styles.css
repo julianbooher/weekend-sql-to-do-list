@@ -44,7 +44,7 @@ input{
 }
 #in-name{
     margin-bottom: 4px;
-
+    width: 150px;
 }
 #in-todo{
     margin-bottom: 4px;
