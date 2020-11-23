@@ -18,6 +18,7 @@ function onReady() {
     $('body').on('click', '.btn-delete', deleteTodo);
     // Click handler for the completion status button.
     $('body').on('click', '.btn-complete', updateTodo);
+    $('body').on('click', '.btn-undo-complete', updateTodo);
 };
 
 
@@ -42,7 +43,7 @@ function updateTodo() {
         }
     }).then(function (response) {
         getTodos();
-        console.log('Succesfully Changed Read Status');
+        console.log('Succesfully Changed Completion Status');
     }).catch(function (error) {
         console.log('Error', error);
         alert('Something bad happened. Try again later.');
@@ -174,7 +175,7 @@ function submitTodo(event) {
 function displayError(errorName) {
     // If the name field is empty in the inputs when the submit button is clicked.
     if (errorName == 'name') {
-        $('#in-error-message').empty();
+        $('#in-error-messahttps://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.bbcgoodfood.com%2Frecipes%2Fcollection%2Fdessert-recipes&psig=AOvVaw2JMFv26D8U0jerRK1nkaBb&ust=1606245517024000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJDgxf6wme0CFQAAAAAdAAAAABADge').empty();
         $('#in-name').addClass('input-error');
         $('#in-error-message').addClass('alert alert-danger');
         $('#in-error-message').append('Please Enter a Name in the submission field.');
