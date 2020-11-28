@@ -88,8 +88,6 @@ function deleteTodo() {
             )
         }
     })
-
-
 };
 
 // Get route for the todo list.
