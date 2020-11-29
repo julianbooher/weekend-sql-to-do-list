@@ -1,5 +1,10 @@
+html {
+    position: relative;
+    min-height: 100%;
+  }
 body{
-    background-color: antiquewhite;
+    background-color: rgb(236, 230, 221);
+    margin-bottom: 60px;
 }
 header{
     text-align: center;
@@ -11,15 +16,8 @@ header{
     max-width: auto;
     max-height: 40px;
 }
-footer{
-    background-color: rgba(60, 182, 60, 0.87);;
-    text-align: center;
-    padding: 1em;
-    margin-top: 6em;
-}
-#footer-note{
-    margin-bottom: 0;
-}
+
+
 main{
     text-align: center;
     width: 100%;
